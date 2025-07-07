@@ -2,8 +2,8 @@ name: Sync upstream repo
 
 on:
   schedule:
-    # 每天凌晨2点自动同步，可根据需要调整 cron 表达式
-    - cron: '0 2 * * *'
+    # 每天13点06自动同步，可根据需要调整 cron 表达式
+    - cron: '06 13 * * *'
   workflow_dispatch:   # 可以手动触发
 
 jobs:
