@@ -1,0 +1,27 @@
+name: Sync upstream repo
+
+on:
+  schedule:
+    # 每天凌晨2点自动同步，可根据需要调整 cron 表达式
+    - cron: '0 2 * * *'
+  workflow_dispatch:   # 可以手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync upstream to fork
+        uses: actions-cool/Sync-repo-github-action@v2.2.2  # 建议使用最新 release 版本
+        with:
+          # 上游仓库地址
+          upstream_repo: go-gitea/gitea
+          # 上游分支名
+          upstream_branch: main
+          # 你仓库的分支名
+          branch: main
+          # 是否自动推送。一般保持 true
+          sync_tag: 'true'
+        env:
+          # 仓库的 GitHub Token，自动注入，无需更改，留空即可
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
